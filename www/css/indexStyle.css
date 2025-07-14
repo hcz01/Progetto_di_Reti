@@ -1,0 +1,37 @@
+ .btn a {
+      color: white !important;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+    }
+    .btn-block {
+      margin-bottom: 15px;
+      border: none;
+    }
+
+    .center-container {
+      max-width: 500px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .btn1 {
+      background: linear-gradient(to right, #007bff, #3399ff);
+    }
+
+    .btn2 {
+      background: linear-gradient(to right, #3399ff, #5f80ff);
+    }
+
+    .btn3 {
+      background: linear-gradient(to right, #5f80ff, #9966ff);
+    }
+
+    .btn4 {
+      background: linear-gradient(to right, #9966ff, #cc66ff);
+    }
+
+
+    .btn:hover {
+      opacity: 0.9;
+    }

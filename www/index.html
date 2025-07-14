@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>welcome</title>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/indexStyle.css" rel="stylesheet">
 </head>
 <body>
-<button><a href="/game.html">game start </a> </button>
+
+<div class="center-container">
+  <button type="button" class="btn btn-lg btn-block btn1">
+    <a href="/game.html">Reindirizzamento per il gioco</a>
+  </button>
+
+  <button type="button" class="btn btn-lg btn-block btn2">
+    <a href="/secret.html">Reindirizzamento per la pagina 403</a>
+  </button>
+
+  <button type="button" class="btn btn-lg btn-block btn3">
+    <a href="/non-esiste.html">Reindirizzamento per la pagina 404</a>
+  </button>
+
+  
+    <form action="/" method="POST">
+  <button type="submit" class="btn btn-lg btn-block btn4 text-white">Reindirizzamento per la pagina 405</button>
+    </form>
+</div>
+
+<script>
+  function sendPost() {
+    fetch('/', { method: 'POST' }).then(() => {
+      location.reload();
+    });
+  }
+</script>
+
 </body>
 </html>
