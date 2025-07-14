@@ -44,21 +44,31 @@ while True:
 
             # salvare log della richiesta
             log_request(method, path, client_ip)
+            # Gestione del file richiesto 
+            if filename == '/secret.html':
+                status_line = b"HTTP/1.1 403 Forbidden\r\n"
+                filename = '/403.html'
 
-            # Gestione del file richiesto
-            if filename == '/':
-                filename = '/index.html'
-                status_line = b"HTTP/1.1 200 OK\r\n"
+            # metodo non GET → 405 Method Not Allowed
+            elif method != 'GET':
+                status_line = b"HTTP/1.1 405 Method Not Allowed\r\n"
+                filename = '/405.html'
+
+            # richiesta valida con metodo GET
             else:
-                #richiesta diretta (indirzzo assoluto) 
-                filepath = os.path.join(PAGE_PATH, path.lstrip('/'))
-                if os.path.exists(filepath) and not os.path.isdir(filepath):
-                    filename = path
+                if filename == '/':
+                    filename = '/index.html'
                     status_line = b"HTTP/1.1 200 OK\r\n"
                 else:
-                    filename = '/404.html'
-                    status_line = b"HTTP/1.1 404 Not Found\r\n"
+                    filepath = os.path.join(PAGE_PATH, path.lstrip('/'))
+                    if os.path.exists(filepath) and not os.path.isdir(filepath):
+                        filename = path
+                        status_line = b"HTTP/1.1 200 OK\r\n"
+                    else:
+                        filename = '/404.html'
+                        status_line = b"HTTP/1.1 404 Not Found\r\n"
 
+            # Costruisci filepath finale (solo una volta)
             filepath = os.path.join(PAGE_PATH, filename.lstrip('/'))
 
             try:
