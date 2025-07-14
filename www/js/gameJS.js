@@ -29,13 +29,6 @@ const dog = document.getElementById("dog");
         }
     });
 
-    // 📱 Supporto tocco mobile
-    document.addEventListener("touchstart", () => {
-        if (!isJumping && !gameOver) {
-            jump();
-        }
-    });
-
     function jump() {
         isJumping = true;
 
@@ -95,7 +88,11 @@ const dog = document.getElementById("dog");
             if (blockX + block.offsetWidth > 0) {
                 requestAnimationFrame(moveBlock);
             } else {
-                block.remove();
+                 if (!gameOver) {
+                score++;
+                scoreDisplay.textContent = "Punti: " + score;
+            }
+            block.remove();
             }
         }
 
@@ -112,13 +109,7 @@ const dog = document.getElementById("dog");
         if (!gameOver && speed < 20) speed += 0.5;
     }, 5000);
 
-    //Punteggio
-    setInterval(() => {
-        if (!gameOver) {
-            score++;
-            scoreDisplay.textContent = "Punti: " + score;
-        }
-    }, 500);
+ 
 
     //Pulsante ricomincia
     restartBtn.addEventListener("click", () => {
